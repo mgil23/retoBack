@@ -48,7 +48,7 @@ public class CustomerController {
    }
 
     @GetMapping("/{customerId}")
-    public ResponseEntity<CustomerDTO> finCustomerById(@NotNull @PathVariable Long customerId) throws Exception {
+    public ResponseEntity<?> finCustomerById(@NotNull @PathVariable Long customerId) throws Exception {
         return new ResponseEntity<>(customerService.findCustomerById(customerId), HttpStatus.OK);
     }
 
@@ -57,6 +57,12 @@ public class CustomerController {
        log.debug("Request to get all Customers");
        return new ResponseEntity<>(customerService.findAllCustomers(), HttpStatus.OK);
    }
+
+    @GetMapping("/name/{customerId}")
+    public ResponseEntity<?> findCustomerByName(@NotNull @PathVariable Long customerId) throws Exception {
+        return new ResponseEntity<>(customerService.findCustomerByName(customerId), HttpStatus.OK);
+    }
+
 
 
 }

@@ -91,4 +91,11 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = customerRepository.findById(id).orElseThrow( () -> new Exception("El cliente con id " + id + "no existe"));
         return customerMapper.customerToCustomerDTO(customer);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public String findCustomerByName(Long id) throws Exception {
+        Customer customer = customerRepository.findById(id).orElseThrow( () -> new Exception("El cliente con id " + id + "no existe"));
+        return customer.getName();
+    }
 }

@@ -2,6 +2,7 @@ package com.neo.app.users.services;
 
 import com.neo.app.users.dto.CustomerDTO;
 import com.neo.app.users.domain.Customer;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,5 +21,6 @@ public interface CustomerService {
     void deleteCustomerById(Long id) throws Exception;
 
 
-
+    @Transactional(readOnly = true)
+    String findCustomerByName(Long id) throws Exception;
 }

@@ -3,7 +3,6 @@ package com.neo.app.transactionsaccounts.services;
 import com.neo.app.transactionsaccounts.domain.Account;
 import com.neo.app.transactionsaccounts.domain.Movement;
 import com.neo.app.transactionsaccounts.dto.ReportDTO;
-import com.neo.app.transactionsaccounts.mapper.MovementMapper;
 import com.neo.app.transactionsaccounts.repository.AccountRepository;
 import com.neo.app.transactionsaccounts.repository.MovementRepository;
 import org.slf4j.Logger;
@@ -15,7 +14,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,12 +23,13 @@ public class ReportMovementServiceImpl implements ReportMovementService {
     private final MovementRepository movementRepository;
     private final AccountRepository accountRepository;
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBulder;
 
-    public ReportMovementServiceImpl(MovementRepository movementRepository, AccountRepository accountRepository, WebClient webClient) {
+    public ReportMovementServiceImpl(MovementRepository movementRepository, AccountRepository accountRepository, WebClient.Builder webClientBulder) {
         this.movementRepository = movementRepository;
+        this.webClientBulder = webClientBulder;
         this.accountRepository = accountRepository;
-        this.webClient = webClient;
+
     }
 
 
@@ -52,15 +51,15 @@ public class ReportMovementServiceImpl implements ReportMovementService {
             mapper.setAccountNumber(account.getAccountNumber());
             mapper.setType(movement.getType());
             mapper.setMovement(movement.getAmount());
-            mapper.setAvailableBalance(movement.getCurrentBalance());
+            mapper.setInitialBalance(movement.getCurrentBalance());
             return mapper;
         }).collect(Collectors.toList());
 
     }
 
     private String getCustomerName(String customerId) {
-        return webClient.get()
-                .uri("http://MICROSERVICE-CUSTOMERS/customer/{customerId}", customerId)
+        return webClientBulder.build().get()
+                .uri("http://MICROSERVICE-CUSTOMERS/customer/name/{customerId}", customerId)
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();

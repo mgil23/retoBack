@@ -20,5 +20,5 @@ COPY --from=build /app/target/*.jar /app/app.jar
 # Exponer el puerto en el que se ejecutará la aplicación (ajusta según tus necesidades)
 EXPOSE 9090
 
-# Comando para ejecutar tu aplicación (ajusta según tus necesidades)
+# Comando para ejecutar tu aplicación
 CMD ["java", "-jar", "/app/app.jar"]

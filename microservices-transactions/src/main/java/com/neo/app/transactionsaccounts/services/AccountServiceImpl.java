@@ -34,7 +34,7 @@ public class AccountServiceImpl implements AccountService {
     public AccountDTO createAccount(Account account) throws Exception {
         if (account == null) {
             throw new Exception("La cuenta no puede ser nula");
-        } else if (accountRepository.findById(account.getAccountId()).isPresent()) {
+        } else if (accountRepository.findByAccountNumber(account.getAccountNumber()).isPresent()) {
             throw new Exception("La cuenta con id " + account.getAccountId() + " ya existe");
         }
         return accountMapper.accountToAccountDTO(accountRepository.save(account));

@@ -33,7 +33,7 @@ public class AccountController {
         return accountDTO.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<AccountDTO> createAccount(@Valid @RequestBody AccountDTO account) {
         try {
             AccountDTO createdAccount = accountService.createAccount(accountMapper.accountDTOToAccount(account));

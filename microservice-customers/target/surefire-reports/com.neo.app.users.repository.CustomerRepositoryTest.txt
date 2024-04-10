@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.neo.app.users.repository.CustomerRepositoryTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.177 s - in com.neo.app.users.repository.CustomerRepositoryTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.2 s - in com.neo.app.users.repository.CustomerRepositoryTest
