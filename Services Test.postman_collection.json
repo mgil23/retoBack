@@ -1,0 +1,332 @@
+{
+	"info": {
+		"_postman_id": "37457eb9-67a9-45ba-ab7f-38deacb81cb2",
+		"name": "Services Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21396275"
+	},
+	"item": [
+		{
+			"name": "service-customer",
+			"item": [
+				{
+					"name": "Create customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"password123\",\r\n    \"state\": \"A\",\r\n    \"name\": \"John Doe\",\r\n    \"gender\": \"M\",\r\n    \"age\": 30,\r\n    \"identification\": \"123456789\",\r\n    \"address\": \"123 Main St, Anytown, USA\",\r\n    \"phoneNumber\": \"1234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Duplicate Client",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Pedro Parrilla\",\r\n  \"genero\": \"M\",\r\n  \"edad\": 30,\r\n  \"identificacion\": \"1234567891\",\r\n  \"direccion\": \"123 Main Street\",\r\n  \"telefono\": \"555-123-4567\",\r\n  \"password\": \"mysecretpassword\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/clients",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"clients"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Oct 2023 16:07:18 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"El cliente ya ha sido registrado\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get customer by identification",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customer/identification/123456789",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer",
+								"identification",
+								"123456789"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get a client",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/clients/1234567890",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"clients",
+										"1234567890"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Oct 2023 16:03:38 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"68d14cf1-5b9c-44fc-8282-c2a19c812425\",\n    \"nombre\": \"Juan Perea R\",\n    \"genero\": \"M\",\n    \"edad\": 22,\n    \"identificacion\": \"1234567890\",\n    \"direccion\": \"123 Main Street\",\n    \"telefono\": \"555-123-4567\",\n    \"estado\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all clients",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/clients/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"clients",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 30 Oct 2023 16:12:17 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"68d14cf1-5b9c-44fc-8282-c2a19c812425\",\n        \"nombre\": \"Juan Perea R\",\n        \"genero\": \"M\",\n        \"edad\": 22,\n        \"identificacion\": \"1234567890\",\n        \"direccion\": \"123 Main Street\",\n        \"telefono\": \"555-123-4567\",\n        \"estado\": true\n    },\n    {\n        \"id\": \"71f1f6d1-69b4-4a20-99ec-d6e4ce48893b\",\n        \"nombre\": \"Pedro Parrilla\",\n        \"genero\": \"M\",\n        \"edad\": 30,\n        \"identificacion\": \"1234567891\",\n        \"direccion\": \"123 Main Street\",\n        \"telefono\": \"555-123-4567\",\n        \"estado\": false\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Update customer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\": 1,\r\n    \"password\": \"abc1236\",\r\n    \"state\": \"A\",\r\n    \"name\": \"John Doe\",\r\n    \"gender\": \"M\",\r\n    \"age\": 30,\r\n    \"identification\": \"123456789\",\r\n    \"address\": \"123 Main St, Anytown, USA\",\r\n    \"phoneNumber\": \"1234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "service-transactions",
+			"item": [
+				{
+					"name": "Create Account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountId\": 1,\r\n    \"accountNumber\": 123456789,\r\n    \"accountType\": \"Savings\",\r\n    \"initialBalance\": 1000.00,\r\n    \"state\": \"A\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Movement",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"DEPOSITO\",\r\n    \"amount\": 1000.00,\r\n    \"currentBalance\": 5000.00,\r\n    \"account\": {\r\n        \"accountNumber\": 123456789\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movements",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reports/movement/report?accountNumber=123456789&initialDate=2022-01-01&finalDate=2022-12-31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reports",
+								"movement",
+								"report"
+							],
+							"query": [
+								{
+									"key": "accountNumber",
+									"value": "123456789"
+								},
+								{
+									"key": "initialDate",
+									"value": "2022-01-01"
+								},
+								{
+									"key": "finalDate",
+									"value": "2022-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
