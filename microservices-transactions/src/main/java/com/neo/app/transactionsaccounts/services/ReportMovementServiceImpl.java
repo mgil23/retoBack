@@ -50,6 +50,7 @@ public class ReportMovementServiceImpl implements ReportMovementService {
             mapper.setCustomer(customerName);
             mapper.setAccountNumber(account.getAccountNumber());
             mapper.setType(movement.getType());
+            mapper.setStatus(true);
             mapper.setMovement(movement.getAmount());
             mapper.setInitialBalance(movement.getCurrentBalance());
             return mapper;

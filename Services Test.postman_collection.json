@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "37457eb9-67a9-45ba-ab7f-38deacb81cb2",
 		"name": "Services Test",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "21396275"
 	},
 	"item": [
@@ -23,85 +23,16 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/customer",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"customer"
-							]
-						}
+						"url": "http://localhost:40986/customer"
 					},
-					"response": [
-						{
-							"name": "Duplicate Client",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"nombre\": \"Pedro Parrilla\",\r\n  \"genero\": \"M\",\r\n  \"edad\": 30,\r\n  \"identificacion\": \"1234567891\",\r\n  \"direccion\": \"123 Main Street\",\r\n  \"telefono\": \"555-123-4567\",\r\n  \"password\": \"mysecretpassword\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/clients",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"clients"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "transfer-encoding",
-									"value": "chunked"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 30 Oct 2023 16:07:18 GMT"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"error\": \"El cliente ya ha sido registrado\"\n}"
-						}
-					]
+					"response": []
 				},
 				{
 					"name": "Get customer by identification",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/customer/identification/123456789",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"customer",
-								"identification",
-								"123456789"
-							]
-						}
+						"url": "http://localhost:40986/customer/identification/123456789"
 					},
 					"response": [
 						{
@@ -109,18 +40,7 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/clients/1234567890",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"clients",
-										"1234567890"
-									]
-								}
+								"url": "http://localhost:8080/clients/1234567890"
 							},
 							"status": "OK",
 							"code": 200,
@@ -149,17 +69,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/customer",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"customer"
-							]
-						}
+						"url": "http://localhost:40986/customer"
 					},
 					"response": [
 						{
@@ -167,18 +77,7 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/clients/all",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"clients",
-										"all"
-									]
-								}
+								"url": "http://localhost:8080/clients/all"
 							},
 							"status": "OK",
 							"code": 200,
@@ -216,17 +115,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/customer",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"customer"
-							]
-						}
+						"url": "http://localhost:40986/customer"
 					},
 					"response": []
 				}
@@ -242,24 +131,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"accountId\": 1,\r\n    \"accountNumber\": 123456789,\r\n    \"accountType\": \"Savings\",\r\n    \"initialBalance\": 1000.00,\r\n    \"state\": \"A\"\r\n}",
+							"raw": "{\r\n    \"accountNumber\": 123456789,\r\n    \"accountType\": \"Savings\",\r\n    \"initialBalance\": 1000.00,\r\n    \"state\": \"A\",\r\n    \"customerId\":3\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/accounts",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"accounts"
-							]
-						}
+						"url": "http://localhost:42340/account"
 					},
 					"response": []
 				},
@@ -277,34 +156,23 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:8080/movements",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"movements"
-							]
-						}
+						"url": "http://localhost:42340/movement"
 					},
 					"response": []
 				},
 				{
 					"name": "Report",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/reports/movement/report?accountNumber=123456789&initialDate=2022-01-01&finalDate=2022-12-31",
+							"raw": "http://localhost:44031/movement/report?accountNumber=123456789&initialDate=2024-04-08&finalDate=2024-04-10",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "44031",
 							"path": [
-								"reports",
 								"movement",
 								"report"
 							],
@@ -315,11 +183,11 @@
 								},
 								{
 									"key": "initialDate",
-									"value": "2022-01-01"
+									"value": "2024-04-08"
 								},
 								{
 									"key": "finalDate",
-									"value": "2022-12-31"
+									"value": "2024-04-10"
 								}
 							]
 						}
