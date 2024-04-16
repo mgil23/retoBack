@@ -17,6 +17,7 @@ C:\Users\manuel.gil\OneDrive - NEORIS\Documentos\Retos\retoBack\microservices-tr
 C:\Users\manuel.gil\OneDrive - NEORIS\Documentos\Retos\retoBack\microservices-transactions\src\main\java\com\neo\app\transactionsaccounts\exceptions\GlobalExceptionHandler.java
 C:\Users\manuel.gil\OneDrive - NEORIS\Documentos\Retos\retoBack\microservices-transactions\src\main\java\com\neo\app\transactionsaccounts\MicroserviceTransactionsaccountsApplication.java
 C:\Users\manuel.gil\OneDrive - NEORIS\Documentos\Retos\retoBack\microservices-transactions\src\main\java\com\neo\app\transactionsaccounts\mapper\AccountMapper.java
+C:\Users\manuel.gil\OneDrive - NEORIS\Documentos\Retos\retoBack\microservices-transactions\src\main\java\com\neo\app\transactionsaccounts\controller\ReportsMovementsController.java
 C:\Users\manuel.gil\OneDrive - NEORIS\Documentos\Retos\retoBack\microservices-transactions\src\main\java\com\neo\app\transactionsaccounts\services\AccountServiceImpl.java
 C:\Users\manuel.gil\OneDrive - NEORIS\Documentos\Retos\retoBack\microservices-transactions\src\main\java\com\neo\app\transactionsaccounts\services\MovementService.java
 C:\Users\manuel.gil\OneDrive - NEORIS\Documentos\Retos\retoBack\microservices-transactions\src\main\java\com\neo\app\transactionsaccounts\services\ReportMovementService.java

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.neo.app.transactionsaccounts.controller.ReportsMovementsControllerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.357 s - in com.neo.app.transactionsaccounts.controller.ReportsMovementsControllerTest

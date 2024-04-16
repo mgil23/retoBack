@@ -27,13 +27,11 @@ public class MovementsController {
 
     private final MovementService movementService;
     private final MovementMapper movementMapper;
-    private final ReportMovementService reportMovementService;
 
     @Autowired
-    public MovementsController(MovementService movementService, MovementMapper movementMapper, ReportMovementService reportMovementService) {
+    public MovementsController(MovementService movementService, MovementMapper movementMapper) {
         this.movementService = movementService;
         this.movementMapper = movementMapper;
-        this.reportMovementService = reportMovementService;
     }
 
     @PostMapping("")
@@ -67,17 +65,6 @@ public class MovementsController {
     public ResponseEntity<List<MovementDTO>> getAllMovements() throws Exception {
         log.debug("Request to get all Movements");
         return new ResponseEntity<>(movementService.getAllMovements(), HttpStatus.OK);
-    }
-
-    @GetMapping("/report")
-    public ResponseEntity<List<ReportDTO>> generateAccountMovementsReport(@RequestParam String accountNumber,
-                                                                          @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate initialDate,
-                                                                          @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate finalDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String initialDateStr = initialDate.format(formatter);
-        String finalDateStr = finalDate.format(formatter);
-        List<ReportDTO> report = reportMovementService.generateAccountMovementsReport(accountNumber, initialDateStr, finalDateStr);
-        return new ResponseEntity<>(report, HttpStatus.OK);
     }
 
 }

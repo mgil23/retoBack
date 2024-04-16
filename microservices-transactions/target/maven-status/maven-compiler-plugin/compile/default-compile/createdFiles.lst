@@ -16,6 +16,7 @@ com\neo\app\transactionsaccounts\domain\Movement.class
 com\neo\app\transactionsaccounts\dto\MovementDTO.class
 com\neo\app\transactionsaccounts\services\ReportMovementService.class
 com\neo\app\transactionsaccounts\exceptions\ErrorExceptionResponse.class
+com\neo\app\transactionsaccounts\controller\ReportsMovementsController.class
 com\neo\app\transactionsaccounts\services\MovementService.class
 com\neo\app\transactionsaccounts\domain\Account.class
 com\neo\app\transactionsaccounts\services\AccountService.class

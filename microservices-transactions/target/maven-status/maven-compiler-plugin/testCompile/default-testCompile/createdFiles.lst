@@ -1,2 +1,3 @@
 com\neo\app\transactionsaccounts\controller\MovementsControllerTest.class
+com\neo\app\transactionsaccounts\controller\ReportsMovementsControllerTest.class
 com\neo\app\transactionsaccounts\MicroserviceTransactionsaccountsApplicationTests.class
