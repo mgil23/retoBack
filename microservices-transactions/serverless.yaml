@@ -1,0 +1,13 @@
+tags: # Tags para los lambdas según definición de Arquitectura (obligatorio)
+FOCODAMAS: ${self:custom.environmentTags.${opt:stage}}
+FOCODAPP: CODIGO_APP # Reemplazar por el código de la aplicación 
+
+stackTags: # Tags para CloudFormation según definición de Arquitectura (obligatorio)
+FOCODAMAS: ${self:custom.environmentTags.${opt:stage}}
+FOCODAPP: CODIGO_APP # Reemplazar por el código de la aplicación 
+
+custom:
+functionsFile: ${param:functionsFile, 'cloud'}
+accounts: ${file(./config/serverless/common-config.yaml):accounts}
+accountsInfo: ${file(./config/serverless/common-config.yaml):accountsInfo}
+roles: ${file(./config/serverless/common-config.yaml):roles}
