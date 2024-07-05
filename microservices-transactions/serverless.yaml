@@ -1,6 +1,45 @@
-tags:
-  FOCODAMAS: .
-  FOCODAPP: CODIGO_APP
-stackTags:
-  FOCODAMAS: ${self:custom.environmentTags.${opt:stage}}
-  FOCODAPP: CODIGO_APP
+service: poc-peru-2
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  stackName: ${self:service}-${self:provider.stage}
+  apiGateway:
+    shouldStartNameWithService: true
+  deploymentBucket:
+    name: ${self:service}-${self:provider.stage}-deployment
+  tracing:
+    lambda: true
+  
+  tags: # Tags para los lambdas según definición de Arquitectura (obligatorio)
+    FOCODAMAS: ${self:custom.environmentTags.${opt:stage}}
+    FOCODAPP: CODIGO_APP # Reemplazar por el código de la aplicación
+
+  stackTags: # Tags para CloudFormation según definición de Arquitectura (obligatorio)
+    FOCODAMAS: ${self:custom.environmentTags.${opt:stage}}
+    FOCODAPP: CODIGO_APP # Reemplazar por el código de la aplicación
+
+  environment:
+    REGION: ${self:provider.region}
+    STAGE: ${self:provider.stage}
+    LOG_LEVEL: INFO,DEBUG,ERROR
+    HOST_FARG: ${ssm:/CRM/${self:provider.stage}/HOST_FARGATE/BUSINESS_POLIZA_CROSS}
+    HOST_API_BUS_POL_CROSS: ${ssm:/CRM/${self:provider.stage}/HOST_FARGATE/BUSINESS_POLIZA_CROSS}
+    HOST_API_BUS_CARTA_GARANTIA: ${ssm:/CRM/${self:provider.stage}/API/BUSINESS_CARTA_GARANTIA}
+    HOST_NEGOCIO_RETENCION: ${ssm:/CRM/${self:provider.stage}/API/BUSINESS_RETENCION}
+    API_NEGOCIO_RETENCION: ${ssm:/CRM/${self:provider.stage}/CREDENTIALS/API/BUSINESS_RETENCION}
+    NEGOCIO_PAGO: nsdatapxappexi.iman.io:9444/api/v3/rest
+
+    API_NEGOCIO_PAGO_CREDENCIALES: ${ssm:/CRM/${self:provider.stage}/BUSINESS_PAGO/CREDENTIALS}
+    API_NEGOCIO_VIDADNCE_CREDENCIALES: ${ssm:/CRM/${self:provider.stage}/BUSINESS_VIDADNCE/CREDENTIALS}
+    API_NEGOCIO_POLIZA_CREDENCIALES: ${ssm:/CRM/${self:provider.stage}/BUSINESS_POLIZA/CREDENTIALS}
+
+custom:
+  functionsFile: ${param:functionsFile, 'cloud'}
+  accounts: ${file(./config/serverless/common-config.yaml):accounts}
+  accountsInfo: ${file(./config/serverless/common-config.yaml):accountsInfo}
+  roles: ${file(./config/serverless/common-config.yaml):roles}.
+  environmentTags: ${file(./config/serverless/common-config.yaml):environmentTags}
