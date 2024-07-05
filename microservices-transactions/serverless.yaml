@@ -1,7 +1,6 @@
-tags: # Tags para los lambdas según definición de Arquitectura (obligatorio)
-FOCODAMAS: ${self:custom.environmentTags.${opt:stage}}
-FOCODAPP: CODIGO_APP # Reemplazar por el código de la aplicación 
-
-stackTags: # Tags para CloudFormation según definición de Arquitectura (obligatorio)
-FOCODAMAS: ${self:custom.environmentTags.${opt:stage}}
-FOCODAPP: CODIGO_APP # Reemplazar por el código de la aplicación 
+tags:
+  FOCODAMAS: .
+  FOCODAPP: CODIGO_APP
+stackTags:
+  FOCODAMAS: ${self:custom.environmentTags.${opt:stage}}
+  FOCODAPP: CODIGO_APP
