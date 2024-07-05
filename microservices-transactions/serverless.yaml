@@ -1,10 +1,41 @@
-tags:
+memorySize: 512 # Colocar la cantidad de RAM según definición de Arquitectura
+versionFunctions: false
+logRetentionInDays: 30
+architecture: arm64
+ 
+tracing:
+  lambda: true
+ 
+deploymentBucket:
+  name: ${self:custom.deploymentBucket.${opt:stage}}
+  serverSideEncryption: AES256
+ 
+tags: # Tags para los lambdas según definición de Arquitectura (obligatorio)
   FOCODAMAS: ${self:custom.environmentTags.${opt:stage}}
-  FOCODAPP: CODIGO_APP
-  key: ""
-  value: ""
-stackTags:
+  FOCODAPP: CODIGO_APP # Reemplazar por el código de la aplicación
+ 
+stackTags: # Tags para CloudFormation según definición de Arquitectura (obligatorio)
   FOCODAMAS: ${self:custom.environmentTags.${opt:stage}}
-  FOCODAPP: CODIGO_APP
-  key: ""
-  value: ""
+  FOCODAPP: CODIGO_APP # Reemplazar por el código de la aplicación
+ 
+environment:
+  # X_AMZN_TRACE_ID: 0 # Usar únicamente para ambiente local, para DESA, TEST y PROD se debe eliminar
+  REGION: ${self:provider.region}
+  STAGE: ${self:provider.stage}
+  LOG_LEVEL: INFO,DEBUG,ERROR
+  HOST_FARG: ${ssm:/CRM/${self:provider.stage}/HOST_FARGATE/BUSINESS_POLIZA_CROSS}
+  HOST_API_BUS_POL_CROSS: ${ssm:/CRM/${self:provider.stage}/HOST_FARGATE/BUSINESS_POLIZA_CROSS}
+  HOST_API_BUS_CARTA_GARANTIA: ${ssm:/CRM/${self:provider.stage}/API/BUSINESS_CARTA_GARANTIA}
+  HOST_NEGOCIO_RETENCION: ${ssm:/CRM/${self:provider.stage}/API/BUSINESS_RETENCION}
+  API_NEGOCIO_RETENCION: ${ssm:/CRM/${self:provider.stage}/CREDENTIALS/API/BUSINESS_RETENCION}
+  NEGOCIO_PAGO: nsdatapxappexi.iman.io:9444/api/v3/rest
+ 
+  API_NEGOCIO_PAGO_CREDENCIALES: ${ssm:/CRM/${self:provider.stage}/BUSINESS_PAGO/CREDENTIALS}
+  API_NEGOCIO_VIDADNCE_CREDENCIALES: ${ssm:/CRM/${self:provider.stage}/BUSINESS_VIDADNCE/CREDENTIALS}
+  API_NEGOCIO_POLIZA_CREDENCIALES: ${ssm:/CRM/${self:provider.stage}/BUSINESS_POLIZA/CREDENTIALS}
+ 
+custom:
+  functionsFile: ${param:functionsFile, 'cloud'}
+  accounts: ${file(./config/serverless/common-config.yaml):accounts}
+  accountsInfo: ${file(./config/serverless/common-config.yaml):accountsInfo}
+  roles: ${file(./config/serverless/common-config.yaml):roles}
