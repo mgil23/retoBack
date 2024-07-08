@@ -10,13 +10,15 @@ deploymentBucket:
   name: ${self:custom.deploymentBucket.${opt:stage}}
   serverSideEncryption: AES256
  
-tags: # Tags para los lambdas según definición de Arquitectura (obligatorio)
-  FOCODAMAS: ${}
-  FOCODAPP: CODIGO_APP # Reemplazar por el código de la aplicación
- 
-stackTags: # Tags para CloudFormation según definición de Arquitectura (obligatorio)
+tags:
   FOCODAMAS: ${self:custom.environmentTags.${opt:stage}}
-  FOCODAPP: CODIGO_APP # Reemplazar por el código de la aplicación
+  FOCODAPP: CODIGO_APP
+  - Key: FOCODAMAS
+  Value: ${self:custom.environmentTags.${opt:stage}}
+ 
+stackTags:
+  FOCODAMAS: ${self:custom.environmentTags.${opt:stage}}
+  FOCODAPP: CODIGO_APP
  
 environment:
   # X_AMZN_TRACE_ID: 0 # Usar únicamente para ambiente local, para DESA, TEST y PROD se debe eliminar
